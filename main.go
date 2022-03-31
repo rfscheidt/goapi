@@ -2,40 +2,27 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/rfscheidt/goapi/animals"
+	"github.com/rfscheidt/goapi/circus"
 )
 
 func main() {
-	fmt.Println("my first api in golang")
+	dog1 := animals.Dog{"Everest"}
+	dog2 := animals.Dog{"Chase"}
 
-	r := mux.NewRouter()
+	cat1 := animals.Cat{"Marrie"}
+	cat2 := animals.Cat{"Cherrei"}
 
-	r.HandleFunc("/movies", create).Methods("POST")
-	r.HandleFunc("/movies", findAll).Methods("GET")
-	r.HandleFunc("/movies/{id}", findById).Methods("GET")
-	r.HandleFunc("/movies/{id}", remove).Methods("DELETE")
+	//fmt.Println(dog1.Speaks())
+	//fmt.Println(dog2.Speaks())
 
-	http.ListenAndServe(":8080", r)
-}
+	//fmt.Println(cat1.Speaks())
+	//fmt.Println(cat2.Speaks())
 
-func create(w http.ResponseWriter, r *http.Request) {
-	json, _ := ioutil.ReadAll(r.Body)
+	fmt.Println(circus.Speaks(dog1))
+	fmt.Println(circus.Speaks(dog2))
 
-	fmt.Println("create method", string(json))
-}
-
-func findAll(http.ResponseWriter, *http.Request) {
-	fmt.Println("create findAll")
-}
-
-func findById(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	fmt.Println("create findById", params["id"])
-}
-
-func remove(http.ResponseWriter, *http.Request) {
-	fmt.Println("create remove")
+	fmt.Println(circus.Speaks(cat1))
+	fmt.Println(circus.Speaks(cat2))
 }
