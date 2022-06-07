@@ -7,7 +7,7 @@ import (
 	"github.com/rfscheidt/goapi/circus"
 )
 
-func main() {
+func interfaces() {
 	dog1 := animals.Dog{"Everest"}
 	dog2 := animals.Dog{"Chase"}
 
